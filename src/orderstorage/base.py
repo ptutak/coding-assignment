@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from typing import Tuple
 
 from .const import Side
 
@@ -23,14 +24,16 @@ class Order(ABC):
     def update_size(self, new_size: int) -> None:
         """Update size."""
 
-    def ticker_register(self, ticker: "Ticker"):
-        "Register the ticker."
-
     def deregister(self) -> None:
         """Deregister from the tickers."""
 
 
 class Ticker(ABC):
+    @property
+    @abstractmethod
+    def ticker_id(self) -> str:
+        pass
+
     def register(self, order: Order):
         pass
 
@@ -39,4 +42,8 @@ class Ticker(ABC):
 
 
 class OrderStorage(ABC):
-    pass
+    def process_order(self, command: str) -> None:
+        pass
+
+    def get_best_bid_and_ask_prices(self, ticker: str) -> Tuple[float, float]:
+        pass

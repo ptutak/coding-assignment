@@ -1,6 +1,7 @@
 pytest
 black
 isort
+mypy
 flake8
 flake8-black
 flake8-isort

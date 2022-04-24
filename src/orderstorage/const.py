@@ -2,5 +2,5 @@ from enum import Enum
 
 
 class Side(Enum):
-    ASK = "ask"
-    BID = "bid"
+    ASK = "S"
+    BID = "B"
