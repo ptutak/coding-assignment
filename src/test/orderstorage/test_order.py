@@ -3,8 +3,8 @@ from orderstorage.order import MemoryOrder
 from orderstorage.ticker import MemoryTicker
 
 
-def test_order(clear_classes):
-    ticker = MemoryTicker.get_ticker_by_id("AAA")
+def test_order():
+    ticker = MemoryTicker("AAA")
     order = MemoryOrder("aabbb", "S", 120.0, 54, ticker)
 
     assert order.order_id == "aabbb"
@@ -16,8 +16,8 @@ def test_order(clear_classes):
     assert order.size == 33
 
 
-def test_order_with_ticker(clear_classes):
-    ticker = MemoryTicker.get_ticker_by_id("AAA")
+def test_order_with_ticker():
+    ticker = MemoryTicker("AAA")
     MemoryOrder("aabbb", "S", 120.0, 54, ticker)
 
     assert ticker.best_ask == 120.0

@@ -10,6 +10,12 @@ from .ticker import MemoryTicker
 class MemoryOrderStorage(OrderStorage):
     def __init__(self) -> None:
         self._orders: Dict[str, MemoryOrder] = {}
+        self._tickers: Dict[str, MemoryTicker] = {}
+
+    def _get_ticker_by_id(self, ticker_id) -> MemoryTicker:
+        if ticker_id not in self._tickers:
+            self._tickers[ticker_id] = MemoryTicker(ticker_id)
+        return self._tickers[ticker_id]
 
     def process_order(self, command: str) -> None:
         splitted_command = command.split("|")
@@ -19,7 +25,7 @@ class MemoryOrderStorage(OrderStorage):
             if order_id in self._orders:
                 raise OrderAlreadyPresentException(f"Order with id {order_id} is already present.")
             ticker_id = splitted_command[3]
-            ticker = MemoryTicker.get_ticker_by_id(ticker_id)
+            ticker = self._get_ticker_by_id(ticker_id)
             side = splitted_command[4]
             price = float(splitted_command[5])
             size = int(splitted_command[6])
@@ -39,5 +45,5 @@ class MemoryOrderStorage(OrderStorage):
             del self._orders[order_id]
 
     def get_best_bid_and_ask_prices(self, ticker_id: str) -> Tuple[float, float]:
-        ticker = MemoryTicker.get_ticker_by_id(ticker_id)
+        ticker = self._get_ticker_by_id(ticker_id)
         return (ticker.best_bid, ticker.best_ask)

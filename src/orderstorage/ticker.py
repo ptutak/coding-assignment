@@ -6,8 +6,6 @@ from .const import Side
 
 
 class MemoryTicker(Ticker):
-    _instances: Dict[str, "Ticker"] = {}
-
     def __init__(self, ticker_id: str) -> None:
         self._ask_side: List[Order] = []
         self._ask_orders: Set[str] = set()
@@ -17,14 +15,6 @@ class MemoryTicker(Ticker):
     @property
     def ticker_id(self) -> str:
         return self._ticker_id
-
-    @classmethod
-    def get_ticker_by_id(cls, ticker_id: str) -> "Ticker":
-        if ticker_id in cls._instances:
-            return cls._instances[ticker_id]
-        ticker = MemoryTicker(ticker_id)
-        cls._instances[ticker_id] = ticker
-        return ticker
 
     @property
     def best_ask(self) -> float:

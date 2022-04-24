@@ -4,7 +4,7 @@ from orderstorage.exceptions import OrderAlreadyPresentException, OrderNotFoundE
 from orderstorage.orderstorage import MemoryOrderStorage
 
 
-def test_memory_orderstorage(clear_classes):
+def test_memory_orderstorage():
     memory_order_storage = MemoryOrderStorage()
 
     assert memory_order_storage.get_best_bid_and_ask_prices("AAA") == (0, 0)

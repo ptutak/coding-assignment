@@ -34,11 +34,6 @@ class Order(ABC):
 
 
 class Ticker(ABC):
-    @classmethod
-    @abstractmethod
-    def get_ticker_by_id(cls, ticker_id: str) -> "Ticker":
-        pass
-
     @property
     @abstractmethod
     def ticker_id(self) -> str:
