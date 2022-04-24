@@ -49,10 +49,10 @@ class Ticker(ABC):
     def best_ask(self) -> float:
         """Get best ask for ticker."""
 
-    def register(self, order: Order):
+    def register(self, order: Order) -> None:
         """Register an order for ticker."""
 
-    def deregister(self, order: Order):
+    def deregister(self, order: Order) -> None:
         """Deregister an order for ticker."""
 
 

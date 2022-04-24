@@ -12,7 +12,7 @@ class MemoryOrderStorage(OrderStorage):
         self._orders: Dict[str, MemoryOrder] = {}
         self._tickers: Dict[str, MemoryTicker] = {}
 
-    def _get_ticker_by_id(self, ticker_id) -> MemoryTicker:
+    def _get_ticker_by_id(self, ticker_id: str) -> MemoryTicker:
         if ticker_id not in self._tickers:
             self._tickers[ticker_id] = MemoryTicker(ticker_id)
         return self._tickers[ticker_id]

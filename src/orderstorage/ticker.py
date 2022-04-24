@@ -28,7 +28,7 @@ class MemoryTicker(Ticker):
             return self._bid_side[-1].price
         return 0.0
 
-    def register(self, order: Order):
+    def register(self, order: Order) -> None:
         if order.side == Side.ASK:
             insort_left(self._ask_side, order, key=lambda x: x.price)
             self._ask_orders.add(order.order_id)
