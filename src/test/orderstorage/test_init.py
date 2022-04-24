@@ -28,3 +28,7 @@ def test_access_functions():
     processOrder(orderbook, "1241|abbb12|c")
 
     assert getBestBidAndAsk(orderbook, "AAA") == (0.0, 100.0)
+
+    processOrder(orderbook, "1242|abscb11|a|AAA|B|100.00000|125")
+
+    assert getBestBidAndAsk(orderbook, "AAA") == (100.0, 100.0)
