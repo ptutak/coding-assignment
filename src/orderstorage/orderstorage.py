@@ -1,6 +1,6 @@
 from typing import Dict, Tuple
 
-from orderstorage.exceptions import OrderNotFoundException
+from orderstorage.exceptions import OrderAlreadyPresentException, OrderNotFoundException
 
 from .base import OrderStorage
 from .order import MemoryOrder
@@ -16,6 +16,8 @@ class MemoryOrderStorage(OrderStorage):
         order_id = splitted_command[1]
         command_type = splitted_command[2]
         if command_type == "a":
+            if order_id in self._orders:
+                raise OrderAlreadyPresentException(f"Order with id {order_id} is already present.")
             ticker_id = splitted_command[3]
             ticker = MemoryTicker.get_ticker_by_id(ticker_id)
             side = splitted_command[4]
