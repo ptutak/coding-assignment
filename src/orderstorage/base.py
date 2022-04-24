@@ -20,6 +20,11 @@ class Order(ABC):
     def price(self) -> float:
         """Return the order price"""
 
+    @property
+    @abstractmethod
+    def size(self) -> int:
+        """Get order size."""
+
     @abstractmethod
     def update_size(self, new_size: int) -> None:
         """Update size."""
@@ -29,9 +34,24 @@ class Order(ABC):
 
 
 class Ticker(ABC):
+    @classmethod
+    @abstractmethod
+    def get_ticker_by_id(cls, ticker_id: str) -> "Ticker":
+        pass
+
     @property
     @abstractmethod
     def ticker_id(self) -> str:
+        pass
+
+    @property
+    @abstractmethod
+    def best_bid(self) -> float:
+        pass
+
+    @property
+    @abstractmethod
+    def best_ask(self) -> float:
         pass
 
     def register(self, order: Order):
@@ -42,8 +62,10 @@ class Ticker(ABC):
 
 
 class OrderStorage(ABC):
+    @abstractmethod
     def process_order(self, command: str) -> None:
         pass
 
+    @abstractmethod
     def get_best_bid_and_ask_prices(self, ticker: str) -> Tuple[float, float]:
         pass

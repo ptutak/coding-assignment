@@ -23,6 +23,10 @@ class MemoryOrder(Order):
     def price(self) -> float:
         return self._price
 
+    @property
+    def size(self) -> int:
+        return self._size
+
     def update_size(self, new_size: int) -> None:
         self._size = new_size
 
