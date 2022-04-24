@@ -1,8 +1,8 @@
+from bisect import insort_left
 from typing import Dict, List, Set
 
 from .base import Order, Ticker
 from .const import Side
-from bisect import insort_left
 
 
 class MemoryTicker(Ticker):

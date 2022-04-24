@@ -67,5 +67,5 @@ class OrderStorage(ABC):
         pass
 
     @abstractmethod
-    def get_best_bid_and_ask_prices(self, ticker: str) -> Tuple[float, float]:
+    def get_best_bid_and_ask_prices(self, ticker_id: str) -> Tuple[float, float]:
         pass

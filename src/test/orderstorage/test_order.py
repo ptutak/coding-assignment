@@ -1,6 +1,6 @@
 from orderstorage.const import Side
-from orderstorage.ticker import MemoryTicker
 from orderstorage.order import MemoryOrder
+from orderstorage.ticker import MemoryTicker
 
 
 def test_order(clear_classes):

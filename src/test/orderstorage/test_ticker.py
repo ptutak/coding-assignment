@@ -1,5 +1,3 @@
-
-
 from orderstorage.ticker import MemoryTicker
 
 
