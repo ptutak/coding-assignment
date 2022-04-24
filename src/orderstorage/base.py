@@ -37,30 +37,30 @@ class Ticker(ABC):
     @property
     @abstractmethod
     def ticker_id(self) -> str:
-        pass
+        """Get ticker id."""
 
     @property
     @abstractmethod
     def best_bid(self) -> float:
-        pass
+        """Get best bid for ticker."""
 
     @property
     @abstractmethod
     def best_ask(self) -> float:
-        pass
+        """Get best ask for ticker."""
 
     def register(self, order: Order):
-        pass
+        """Register an order for ticker."""
 
     def deregister(self, order: Order):
-        pass
+        """Deregister an order for ticker."""
 
 
 class OrderStorage(ABC):
     @abstractmethod
     def process_order(self, command: str) -> None:
-        pass
+        """Process order command."""
 
     @abstractmethod
     def get_best_bid_and_ask_prices(self, ticker_id: str) -> Tuple[float, float]:
-        pass
+        """Get best bid and ask prices for selected ticker."""
